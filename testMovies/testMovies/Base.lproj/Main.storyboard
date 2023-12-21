@@ -91,7 +91,7 @@
                     <navigationItem key="navigationItem" title="myTitle" id="ajO-T7-vVT">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="zIY-GA-WvX">
                             <view key="customView" contentMode="scaleToFill" id="hzL-St-ITA">
-                                <rect key="frame" x="16" y="5.6666666666666661" width="50" height="33"/>
+                                <rect key="frame" x="16" y="5.6666666666666679" width="50" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Netflix-Logo-2006 1" translatesAutoresizingMaskIntoConstraints="NO" id="qdK-zr-23X">
@@ -110,6 +110,30 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M31-N5-ZpY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3519.8473282442746" y="-880.28169014084517"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="P1f-Qy-1Rr">
+            <objects>
+                <viewController id="9hA-7t-PXP" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Wye-ih-kzf">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rpd-P1-jiW">
+                                <rect key="frame" x="93" y="289" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="rq0-u3-Dbw"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Ga-mq-AJO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4380" y="-893"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="0O9-Fp-Gvv">
