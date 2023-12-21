@@ -7,24 +7,50 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UISearchBarDelegate {
     
        
-    
-    
+    //MARK: -Varibles
     private var movies: [Movies] = []
+    private var filteredMovies: [Movies] = []
     private let networkManager = MoviesNetworkManager()
     
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    // var data
-    
+    private let searchBar = UISearchBar() //ccc
+    private let myListView = UILabel()
+
+    //MARK: -LifeCycle
     override func viewDidLoad() {
+        
+        
         super.viewDidLoad()
         
         
+        settingOfNavBar()
+        fetchMovies()
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        let nib = UINib(nibName: "HomeCollectionViewCell", bundle: nil)
+        collectionView.register(nib, forCellWithReuseIdentifier: "HomeCollectionViewCell")
+    }
         
+    //MARK: - Methods
+    private func settingOfNavBar(){
+        myListView.text = "My List"
+        myListView.sizeToFit()
+        navigationItem.titleView = myListView
+        
+        
+        searchBar.delegate = self
+        searchBar.placeholder = "Пошук"
+        let searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped))
+        searchButton.tintColor = .black
+        navigationItem.rightBarButtonItem = searchButton
+    }
+    
+    private func fetchMovies(){
         networkManager.fetchNowPlayingMovies { res in
             switch res {
                 
@@ -40,28 +66,34 @@ class HomeViewController: UIViewController {
             }
         }
         
-        
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        
-        let nib = UINib(nibName: "HomeCollectionViewCell", bundle: nil)
-        collectionView.register(nib, forCellWithReuseIdentifier: "HomeCollectionViewCell")
-        // Do any additional setup after loading the view.
     }
     
     
     
+    @objc func searchButtonTapped() {
+        if navigationItem.titleView == myListView {
+            
+            navigationItem.titleView = searchBar
+            searchBar.becomeFirstResponder()
+            
+        } else {
+            
+            navigationItem.titleView = myListView
+            searchBar.resignFirstResponder()
+        }
+        
+    }
+    
+
     
     
 }
 
+
+
+
+
 extension HomeViewController: UICollectionViewDelegate , UICollectionViewDataSource {
-    
-    
-    
-    
-    
-    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movies.count
@@ -72,13 +104,33 @@ extension HomeViewController: UICollectionViewDelegate , UICollectionViewDataSou
         
         
         print(movies[indexPath.row].name)
-        let url = URL(string: movies[indexPath.row].posterFullPath)
-        let data = try?Data(contentsOf: url!)
-        cell.imagesOfCollections.image = UIImage(data: data!)
+        // let url = URL(string: movies[indexPath.row].posterFullPath)
+        // let data = try?Data(contentsOf: url!)
+        // cell.imagesOfCollections.image = UIImage(data: data!)
         
         
-        
-        
+        //Запуск картинок в новом потоке , чтобы работало быстрее
+        if let url = URL(string: movies[indexPath.row].posterFullPath) {
+            URLSession.shared.dataTask(with: url) { (data, response, error)  in
+                if error != nil {
+                    print("Ошибка при загрузке изображения: ")
+                    return
+                }
+                
+                guard let responseData = data else {
+                    print("Не удалось получить данные изображения ")
+                    return
+                }
+                
+                
+                
+                DispatchQueue.main.async {
+                    cell.imagesOfCollections.image = UIImage(data: responseData)
+                }
+            }.resume()
+            
+            
+        }
         return cell
     }
     
