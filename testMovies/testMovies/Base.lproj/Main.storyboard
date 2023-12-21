@@ -68,7 +68,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="otd-jp-aPf">
-                                <rect key="frame" x="0.0" y="164" width="393" height="605"/>
+                                <rect key="frame" x="0.0" y="108" width="393" height="661"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Odq-IA-NDm">
                                     <size key="itemSize" width="100" height="100"/>
@@ -83,12 +83,26 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="otd-jp-aPf" firstAttribute="trailing" secondItem="Fa8-LB-9Yf" secondAttribute="trailing" id="LIg-9q-fj3"/>
-                            <constraint firstItem="otd-jp-aPf" firstAttribute="top" secondItem="Fa8-LB-9Yf" secondAttribute="top" constant="61" id="eaf-b8-eZg"/>
+                            <constraint firstItem="otd-jp-aPf" firstAttribute="top" secondItem="Fa8-LB-9Yf" secondAttribute="top" constant="5" id="eaf-b8-eZg"/>
                             <constraint firstItem="otd-jp-aPf" firstAttribute="leading" secondItem="0jz-vz-m2P" secondAttribute="leading" id="iMt-JI-sTR"/>
                             <constraint firstItem="otd-jp-aPf" firstAttribute="bottom" secondItem="Fa8-LB-9Yf" secondAttribute="bottom" id="utS-Mp-HIj"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="myTitle" id="ajO-T7-vVT"/>
+                    <navigationItem key="navigationItem" title="myTitle" id="ajO-T7-vVT">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="zIY-GA-WvX">
+                            <view key="customView" contentMode="scaleToFill" id="hzL-St-ITA">
+                                <rect key="frame" x="16" y="5.6666666666666661" width="50" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Netflix-Logo-2006 1" translatesAutoresizingMaskIntoConstraints="NO" id="qdK-zr-23X">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="33"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="otd-jp-aPf" id="d01-YT-7CU"/>
                     </connections>
@@ -176,6 +190,7 @@
     </scenes>
     <resources>
         <image name="ArchiveBox" width="30" height="29"/>
+        <image name="Netflix-Logo-2006 1" width="56" height="39"/>
         <image name="Vector" width="20" height="21"/>
         <image name="YoutubeLogo" width="27" height="27"/>
         <systemColor name="systemBackgroundColor">
