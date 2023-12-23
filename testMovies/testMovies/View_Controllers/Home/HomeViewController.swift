@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, UISearchBarDelegate {
+class HomeViewController: UIViewController {
     
        
     //MARK: -Varibles
@@ -56,7 +56,9 @@ class HomeViewController: UIViewController, UISearchBarDelegate {
                 
             case let .success(moviesResult):
                 print(moviesResult)
+                
                 self.movies = moviesResult.results
+                self.filteredMovies = self.movies
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
                     // reloadCollection тут должен быть
@@ -89,6 +91,19 @@ class HomeViewController: UIViewController, UISearchBarDelegate {
     
 }
 
+extension HomeViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            filteredMovies = movies
+        } else {
+            filteredMovies = movies.filter { $0.name.uppercased().contains(searchText.uppercased()) }
+        }
+       
+        collectionView.reloadData()
+    }
+}
+
+
 
 
 
@@ -96,7 +111,7 @@ class HomeViewController: UIViewController, UISearchBarDelegate {
 extension HomeViewController: UICollectionViewDelegate , UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return movies.count
+        return filteredMovies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -110,7 +125,7 @@ extension HomeViewController: UICollectionViewDelegate , UICollectionViewDataSou
         
         
         //Запуск картинок в новом потоке , чтобы работало быстрее
-        if let url = URL(string: movies[indexPath.row].posterFullPath) {
+        if let url = URL(string: filteredMovies[indexPath.row].posterFullPath) {
             URLSession.shared.dataTask(with: url) { (data, response, error)  in
                 if error != nil {
                     print("Ошибка при загрузке изображения: ")
