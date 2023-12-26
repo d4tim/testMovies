@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		078E148B2B3B8D3B00E0F411 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078E148A2B3B8D3B00E0F411 /* ImageLoader.swift */; };
 		3B3C26A62B2B79A700342C56 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3C26A52B2B79A700342C56 /* NetworkManager.swift */; };
 		3B3C26A82B2B79DF00342C56 /* MoviesNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3C26A72B2B79DF00342C56 /* MoviesNetworkManager.swift */; };
 		3B3FACCC2B2483980064E4F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3FACCB2B2483980064E4F2 /* AppDelegate.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		078E148A2B3B8D3B00E0F411 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		3B3C26A52B2B79A700342C56 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		3B3C26A72B2B79DF00342C56 /* MoviesNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesNetworkManager.swift; sourceTree = "<group>"; };
 		3B3FACC82B2483980064E4F2 /* testMovies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testMovies.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				3B4AFC0D2B2B8C4700099FCE /* MoviesResult.swift */,
+				078E148A2B3B8D3B00E0F411 /* ImageLoader.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 				3B872CAE2B274FF400667034 /* HomeViewController.swift in Sources */,
 				3B3FACCC2B2483980064E4F2 /* AppDelegate.swift in Sources */,
 				3B3FACD62B2483980064E4F2 /* testMovies.xcdatamodeld in Sources */,
+				078E148B2B3B8D3B00E0F411 /* ImageLoader.swift in Sources */,
 				3B3FACCE2B2483980064E4F2 /* SceneDelegate.swift in Sources */,
 				3B872CB22B275B6000667034 /* HomeCollectionViewCell.swift in Sources */,
 				3B4AFC0E2B2B8C4700099FCE /* MoviesResult.swift in Sources */,
