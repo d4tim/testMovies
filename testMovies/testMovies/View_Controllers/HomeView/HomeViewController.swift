@@ -12,7 +12,6 @@ class HomeViewController: UIViewController {
     private var movies: [Movies] = []
     private var filteredMovies: [Movies] = []
     private let networkManager = MoviesNetworkManager()
-    
     @IBOutlet weak var collectionView: UICollectionView!
     
     private let searchBar = UISearchBar() //ccc
@@ -87,6 +86,37 @@ extension HomeViewController: UISearchBarDelegate {
 }
 
 extension HomeViewController: UICollectionViewDelegate , UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+            guard let cell = collectionView.cellForItem(at: indexPath) as? HomeCollectionViewCell else {
+                return
+            }
+            let selectedMovie = filteredMovies[indexPath.row]
+            
+            let vcDetail = MovieDetailViewController()
+        
+            let dateFormatter = DateFormatter()
+                // Установка формата для разбора строки даты из API
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                
+                if let apiData = dateFormatter.date(from: selectedMovie.first_air_date) {
+                    dateFormatter.dateFormat = "dd MMM yyyy"
+                    
+                    let formattedDate = dateFormatter.string(from: apiData)
+                    
+                    vcDetail.selectedFistTimeShowed = formattedDate
+                }
+        
+        vcDetail.centralofNewVcImage = cell.imagesOfCollections.image
+            vcDetail.selectedImage = cell.imagesOfCollections.image // Добавление картинки фильма на MovieDetailViewController
+            vcDetail.selectedMovieName = selectedMovie.name //Добавление названия фильма на MovieDetailViewController
+            vcDetail.selectedOverview = selectedMovie.overview
+        vcDetail.voteCount = selectedMovie.vote_average
+        vcDetail.genreIds = selectedMovie.genre_ids.compactMap{ MovieGenres(rawValue: $0)?.description}
+    
+            navigationController?.pushViewController(vcDetail, animated: true)
+        }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return filteredMovies.count
     }
@@ -100,8 +130,6 @@ extension HomeViewController: UICollectionViewDelegate , UICollectionViewDataSou
         // let url = URL(string: movies[indexPath.row].posterFullPath)
         // let data = try?Data(contentsOf: url!)
         // cell.imagesOfCollections.image = UIImage(data: data!)
-        
-        
         //Запуск картинок в новом потоке , чтобы работало быстрее
         //        if let url = URL(string: filteredMovies[indexPath.row].posterFullPath) {
         //            URLSession.shared.dataTask(with: url) { (data, response, error)  in
@@ -121,8 +149,6 @@ extension HomeViewController: UICollectionViewDelegate , UICollectionViewDataSou
         //                    cell.imagesOfCollections.image = UIImage(data: responseData)
         //                }
         //            }.resume()
-        
-        
         
         return cell
     }

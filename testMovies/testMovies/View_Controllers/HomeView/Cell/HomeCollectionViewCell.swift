@@ -16,6 +16,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        imagesOfCollections.layer.cornerRadius = 6
         
         
         // Initialization code
